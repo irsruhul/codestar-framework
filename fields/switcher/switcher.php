@@ -14,12 +14,15 @@ class CSFramework_Option_switcher extends CSFramework_Options {
   }
 
   public function output() {
-
     echo $this->element_before();
     $label = ( isset( $this->field['label'] ) ) ? '<div class="cs-text-desc">'. $this->field['label'] . '</div>' : '';
-    echo '<label><input type="checkbox" name="'. $this->element_name() .'" value="1"'. $this->element_class() . $this->element_attributes() . checked( $this->element_value(), 1, false ) .'/><em data-on="'. esc_html__( 'on', 'cs-framework' ) .'" data-off="'. esc_html__( 'off', 'cs-framework' ) .'"></em><span></span></label>' . $label;
+
+    // Custom Changes - Added on_text & off_text
+    // Custom Attribute for On/Off Texts
+    $on_text = ( isset( $this->field['on_text'] ) ) ? $this->field['on_text'] : esc_html__( 'On', 'cs-framework' );
+    $off_text = ( isset( $this->field['off_text'] ) ) ? $this->field['off_text'] : esc_html__( 'Off', 'cs-framework' );
+
+    echo '<label><input type="checkbox" name="'. $this->element_name() .'" value="1"'. $this->element_class() . $this->element_attributes() . checked( $this->element_value(), 1, false ) .'/><em data-on="'. $on_text .'" data-off="'. $off_text .'"></em><span></span></label>' . $label;
     echo $this->element_after();
-
   }
-
 }
